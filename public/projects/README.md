@@ -1,0 +1,3 @@
+Drop screenshots here as: public/projects/<slug>/1.png, 2.png, ...
+Slugs match src/content/projects.ts (e.g. allama, studysphere, leveragex).
+The project detail page picks up any image files automatically — no code change needed.

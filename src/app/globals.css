@@ -1,26 +1,124 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* The site is always dark — one fixed palette, no light mode, no class
+     switching. Raw tokens live unprefixed here; @theme inline below maps
+     them to the --color-* names Tailwind turns into utilities (bg-bg,
+     text-text, ...). Two different names on purpose so the mapping isn't
+     self-referential. */
+  --bg: #0b0b0c;
+  --surface: #1a1a1a;
+  --surface-2: #232323;
+  --text: #f5f5f5;
+  --muted: #9a9a9a;
+  --border: #2b2b2b;
+
+  /* Gold is the site's signature: --accent is the readable-as-text gold
+     (labels, links, keywords, borders, dots), --accent-rich is the more
+     saturated gold used for FILLS (primary buttons, glows, shimmer),
+     always paired with --accent-ink for guaranteed contrast. */
+  --accent: #e6c65c;
+  --accent-rich: #c9a227;
+  --accent-ink: #1a1204;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-rich: var(--accent-rich);
+  --color-accent-ink: var(--accent-ink);
+
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-jetbrains);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-rich);
+  outline-offset: 2px;
+}
+
+/* Respect reduced-motion globally: kill non-essential animation instead
+   of leaving it to each component to remember. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+  background-size: 160px 160px;
+}
+
+/* One-time gold sweep across the hero name on load. Neutralized by the
+   prefers-reduced-motion block above (animation-duration forced to ~0). */
+.shimmer-text {
+  background: linear-gradient(
+    100deg,
+    var(--color-text) 40%,
+    var(--color-accent-rich) 50%,
+    var(--color-text) 60%
+  );
+  background-size: 250% 100%;
+  background-position: 150% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 2.2s ease-in-out 0.4s 1 forwards;
+}
+@keyframes shimmer-sweep {
+  to {
+    background-position: -50% 0;
+  }
+}
+
+.pulse-dot {
+  position: relative;
+}
+.pulse-dot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
 }
