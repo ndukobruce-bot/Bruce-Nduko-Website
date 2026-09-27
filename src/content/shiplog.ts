@@ -14,6 +14,13 @@ export type ShipLogEntry = {
 export const shiplog: ShipLogEntry[] = [
   {
     date: "2026",
+    title: "AWS Trainium Frontier Competition — ranked 14th",
+    description:
+      "Co-designed ML models and custom kernels on AWS Trainium2 chips for AWS Annapurna Labs' Frontier Competition, ranking 14th on the Phase 1 public leaderboard.",
+    link: "https://trainium-frontier.devpost.com/",
+  },
+  {
+    date: "2026",
     title: "Qwen Cloud Hackathon",
     description:
       "Wrote build specs for Productivity Passport, a SHA Claims Pre-Check Agent, and a Skill Verification Agent — all targeting Kenya's informal economy.",

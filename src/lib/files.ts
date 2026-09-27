@@ -52,3 +52,11 @@ export function getProjectCover(slug: string): string | undefined {
 export function getProjectCovers(slugs: string[]): Record<string, string | undefined> {
   return Object.fromEntries(slugs.map((slug) => [slug, getProjectCover(slug)]));
 }
+
+// Resolves a certificate PDF path (e.g. "/certificates/foo.pdf") only if the
+// file actually exists in /public — never links to a certificate that
+// hasn't been uploaded yet.
+export function getCertificatePdf(relativePath: string | null | undefined): string | undefined {
+  if (!relativePath) return undefined;
+  return fileExistsInPublic(relativePath.replace(/^\//, "")) ? relativePath : undefined;
+}

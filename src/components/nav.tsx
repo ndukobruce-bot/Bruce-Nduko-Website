@@ -10,6 +10,7 @@ const links = [
   { href: "/#tija", label: "Tija Labs" },
   { href: "/about", label: "About" },
   { href: "/now", label: "Now" },
+  { href: "/certifications", label: "Certifications" },
   { href: "/#contact", label: "Contact" },
 ];
 

@@ -85,6 +85,7 @@ export function CommandPalette() {
               <Item onSelect={() => go("/projects")}>All projects</Item>
               <Item onSelect={() => go("/about")}>About</Item>
               <Item onSelect={() => go("/now")}>Now</Item>
+              <Item onSelect={() => go("/certifications")}>Certifications</Item>
               <Item onSelect={() => go("/#contact")}>Contact</Item>
             </Command.Group>
 
