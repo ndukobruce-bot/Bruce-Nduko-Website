@@ -19,10 +19,16 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+// Vercel sets this to the current production domain — a custom domain
+// connected later is picked up automatically with no code change needed.
+const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "http://localhost:3000";
+
 export const metadata: Metadata = {
   title: `${profile.name} — ${profile.headline}`,
   description: profile.positioning,
-  metadataBase: new URL("https://brucenduko.com"), // TODO: confirm final domain
+  metadataBase: new URL(siteUrl),
   openGraph: {
     title: `${profile.name} — ${profile.headline}`,
     description: profile.positioning,
