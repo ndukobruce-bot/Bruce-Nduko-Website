@@ -1,12 +1,15 @@
 import { ArrowUpRight } from "lucide-react";
 import { formatCertMonth, type Certification } from "@/content/certifications";
+import { i18n, pick, type Lang } from "@/content/i18n";
 
 export function CertificationCard({
   cert,
   pdfHref,
+  lang = "en",
 }: {
   cert: Certification;
   pdfHref?: string;
+  lang?: Lang;
 }) {
   return (
     <div className="group flex h-full flex-col justify-between rounded-2xl border border-border bg-surface p-6 transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:border-accent/50 hover:shadow-[0_16px_40px_-16px_var(--color-accent-rich)]">
@@ -36,7 +39,7 @@ export function CertificationCard({
             rel="noopener noreferrer"
             className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-accent transition-colors hover:underline"
           >
-            Verify
+            {pick(lang, i18n.certifications.verify)}
             <ArrowUpRight size={13} />
           </a>
         ) : (
@@ -47,7 +50,7 @@ export function CertificationCard({
               rel="noopener noreferrer"
               className="inline-flex shrink-0 items-center gap-1 text-sm font-medium text-accent transition-colors hover:underline"
             >
-              View certificate
+              {pick(lang, i18n.certifications.viewCertificate)}
               <ArrowUpRight size={13} />
             </a>
           )

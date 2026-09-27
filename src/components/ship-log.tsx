@@ -2,8 +2,9 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { shiplog, type ShipLogEntry } from "@/content/shiplog";
 import { Reveal } from "@/components/reveal";
+import { i18n, pick, type Lang } from "@/content/i18n";
 
-export function ShipLog() {
+export function ShipLog({ lang }: { lang: Lang }) {
   if (shiplog.length === 0) return null;
 
   const dated = shiplog.filter((e) => e.date !== null);
@@ -14,16 +15,16 @@ export function ShipLog() {
       <div className="mx-auto max-w-3xl">
         <Reveal>
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-            Ship log
+            {pick(lang, i18n.shipLog.kicker)}
           </p>
           <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-            Dated milestones
+            {pick(lang, i18n.shipLog.heading)}
           </h2>
         </Reveal>
 
         <div className="mt-12 space-y-8 border-l border-border pl-8">
           {dated.map((entry, i) => (
-            <Entry key={entry.title} entry={entry} delay={i * 0.05} />
+            <Entry key={entry.title} entry={entry} delay={i * 0.05} lang={lang} />
           ))}
         </div>
 
@@ -31,12 +32,12 @@ export function ShipLog() {
           <div className="mt-14">
             <Reveal>
               <p className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                Earlier
+                {pick(lang, i18n.shipLog.earlier)}
               </p>
             </Reveal>
             <div className="space-y-8 border-l border-border pl-8">
               {undated.map((entry, i) => (
-                <Entry key={entry.title} entry={entry} delay={i * 0.05} />
+                <Entry key={entry.title} entry={entry} delay={i * 0.05} lang={lang} />
               ))}
             </div>
           </div>
@@ -46,7 +47,15 @@ export function ShipLog() {
   );
 }
 
-function Entry({ entry, delay }: { entry: ShipLogEntry; delay: number }) {
+function Entry({
+  entry,
+  delay,
+  lang,
+}: {
+  entry: ShipLogEntry;
+  delay: number;
+  lang: Lang;
+}) {
   const projectHref = entry.projectSlug ? `/projects/${entry.projectSlug}` : null;
 
   return (
@@ -60,7 +69,7 @@ function Entry({ entry, delay }: { entry: ShipLogEntry; delay: number }) {
           href={projectHref}
           className="mt-1.5 inline-flex items-center gap-1 text-xs text-muted transition-colors hover:text-accent"
         >
-          View project
+          {pick(lang, i18n.shipLog.viewProject)}
           <ArrowUpRight size={12} />
         </Link>
       )}

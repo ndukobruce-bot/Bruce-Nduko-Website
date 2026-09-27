@@ -6,6 +6,7 @@ import { Footer } from "@/components/footer";
 import { CommandPalette } from "@/components/command-palette";
 import { CodeBackground } from "@/components/code-background";
 import { profile } from "@/content/profile";
+import { getLang } from "@/lib/lang";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -36,20 +37,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const lang = await getLang();
+
   return (
     <html
-      lang="en"
+      lang={lang}
       style={{ colorScheme: "dark" }}
       className={`${jakarta.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg text-text selection:bg-accent-rich selection:text-accent-ink">
         <CodeBackground />
-        <Nav />
+        <Nav lang={lang} />
         <main className="relative z-10 flex-1">{children}</main>
-        <Footer />
+        <Footer lang={lang} />
         <CommandPalette />
       </body>
     </html>

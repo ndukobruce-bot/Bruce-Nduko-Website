@@ -4,13 +4,14 @@ import { projects } from "@/content/projects";
 import { ProjectCard } from "@/components/project-card";
 import { Reveal, RevealGroup, RevealItem, revealItem } from "@/components/reveal";
 import { getProjectCovers } from "@/lib/files";
+import { i18n, pick, type Lang } from "@/content/i18n";
 
 // Chosen to show range: two live consumer products (one AI+payments, one
 // AI+web+mobile), a live mobile app shipped to the Play Store, and one
 // in-build product to show current momentum.
 const selectedSlugs = ["allama", "studysphere", "leveragex", "hali"];
 
-export function SelectedWork() {
+export function SelectedWork({ lang }: { lang: Lang }) {
   const selected = selectedSlugs
     .map((slug) => projects.find((p) => p.slug === slug))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
@@ -23,17 +24,18 @@ export function SelectedWork() {
           <div data-code-clear className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                Selected work
+                {pick(lang, i18n.selectedWork.kicker)}
               </p>
               <h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">
-                Things I&rsquo;ve <span className="text-accent">shipped</span>
+                {pick(lang, i18n.selectedWork.headingPrefix)}
+                <span className="text-accent">{pick(lang, i18n.selectedWork.headingEmphasis)}</span>
               </h2>
             </div>
             <Link
               href="/projects"
               className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-accent"
             >
-              All projects
+              {pick(lang, i18n.selectedWork.ctaAll)}
               <ArrowUpRight size={14} />
             </Link>
           </div>

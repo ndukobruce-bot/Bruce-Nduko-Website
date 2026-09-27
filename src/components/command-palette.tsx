@@ -19,6 +19,21 @@ export function CommandPalette() {
         setOpen((v) => !v);
       }
       if (e.key === "Escape") setOpen(false);
+
+      // "~" opens the terminal from anywhere, unless the user is typing
+      // into a text field (including the palette's own input).
+      if (e.key === "`" || e.key === "~") {
+        const target = e.target as HTMLElement | null;
+        const typing =
+          target &&
+          (target.tagName === "INPUT" ||
+            target.tagName === "TEXTAREA" ||
+            target.isContentEditable);
+        if (!typing && window.location.pathname !== "/terminal") {
+          e.preventDefault();
+          router.push("/terminal");
+        }
+      }
     }
     function onOpenEvent() {
       setOpen(true);
@@ -29,7 +44,7 @@ export function CommandPalette() {
       window.removeEventListener("keydown", onKeydown);
       window.removeEventListener("open-command-palette", onOpenEvent);
     };
-  }, []);
+  }, [router]);
 
   const go = useCallback(
     (href: string) => {
@@ -86,6 +101,8 @@ export function CommandPalette() {
               <Item onSelect={() => go("/about")}>About</Item>
               <Item onSelect={() => go("/now")}>Now</Item>
               <Item onSelect={() => go("/certifications")}>Certifications</Item>
+              <Item onSelect={() => go("/principles")}>Principles</Item>
+              <Item onSelect={() => go("/terminal")}>Terminal</Item>
               <Item onSelect={() => go("/#contact")}>Contact</Item>
             </Command.Group>
 

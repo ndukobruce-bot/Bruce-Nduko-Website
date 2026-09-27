@@ -4,18 +4,22 @@ import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, Command } from "lucide-react";
 import { profile } from "@/content/profile";
+import { i18n, pick, type Lang } from "@/content/i18n";
+import { LanguageToggle } from "@/components/language-toggle";
 
-const links = [
-  { href: "/#work", label: "Work" },
-  { href: "/#tija", label: "Tija Labs" },
-  { href: "/about", label: "About" },
-  { href: "/now", label: "Now" },
-  { href: "/certifications", label: "Certifications" },
-  { href: "/#contact", label: "Contact" },
-];
-
-export function Nav() {
+export function Nav({ lang }: { lang: Lang }) {
   const [open, setOpen] = useState(false);
+
+  const links = [
+    { href: "/#work", label: pick(lang, i18n.nav.work) },
+    { href: "/#tija", label: pick(lang, i18n.nav.tijaLabs) },
+    { href: "/about", label: pick(lang, i18n.nav.about) },
+    { href: "/now", label: pick(lang, i18n.nav.now) },
+    { href: "/certifications", label: pick(lang, i18n.nav.certifications) },
+    { href: "/principles", label: pick(lang, i18n.nav.principles) },
+    { href: "/terminal", label: pick(lang, i18n.nav.terminal) },
+    { href: "/#contact", label: pick(lang, i18n.nav.contact) },
+  ];
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-bg/80 backdrop-blur-md">
@@ -37,6 +41,9 @@ export function Nav() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <div className="hidden md:block">
+            <LanguageToggle lang={lang} />
+          </div>
           <button
             type="button"
             onClick={() =>
@@ -70,6 +77,9 @@ export function Nav() {
               {l.label}
             </Link>
           ))}
+          <div className="mt-2 px-2">
+            <LanguageToggle lang={lang} />
+          </div>
         </nav>
       )}
     </header>

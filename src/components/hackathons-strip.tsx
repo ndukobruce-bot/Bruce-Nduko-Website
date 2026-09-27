@@ -1,12 +1,13 @@
 import { ArrowUpRight } from "lucide-react";
 import { hackathons } from "@/content/hackathons";
 import { Reveal } from "@/components/reveal";
+import { i18n, pick, type Lang } from "@/content/i18n";
 
-export function HackathonsStrip() {
+export function HackathonsStrip({ lang }: { lang: Lang }) {
   return (
     <div>
       <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-        Hackathons &amp; build sprints
+        {pick(lang, i18n.hackathons.kicker)}
       </p>
       <div className="mt-6 grid gap-5 sm:grid-cols-2">
         {hackathons.map((h) => (

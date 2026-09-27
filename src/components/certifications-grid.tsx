@@ -5,6 +5,7 @@ import { certifications, type CertCategory } from "@/content/certifications";
 import { CertificationCard } from "@/components/certification-card";
 import { RevealGroup, RevealItem, revealItem } from "@/components/reveal";
 import { cn } from "@/lib/utils";
+import { i18n, pick, type Lang } from "@/content/i18n";
 
 const categories: CertCategory[] = [
   "AI & Data",
@@ -15,8 +16,10 @@ const categories: CertCategory[] = [
 
 export function CertificationsGrid({
   pdfHrefs,
+  lang,
 }: {
   pdfHrefs: Record<string, string | undefined>;
+  lang: Lang;
 }) {
   const [category, setCategory] = useState<CertCategory | "all">("all");
 
@@ -34,7 +37,7 @@ export function CertificationsGrid({
     <div>
       <div className="flex flex-wrap gap-2">
         <FilterButton active={category === "all"} onClick={() => setCategory("all")}>
-          All
+          {pick(lang, i18n.certifications.filterAll)}
         </FilterButton>
         {categories.map((c) => (
           <FilterButton
@@ -49,13 +52,13 @@ export function CertificationsGrid({
 
       {filtered.length === 0 ? (
         <p className="mt-16 text-sm text-muted">
-          No certifications match that filter.
+          {pick(lang, i18n.certifications.emptyState)}
         </p>
       ) : (
         <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((cert) => (
             <RevealItem key={`${cert.issuer}-${cert.title}`} variants={revealItem}>
-              <CertificationCard cert={cert} pdfHref={pdfHrefs[cert.title]} />
+              <CertificationCard cert={cert} pdfHref={pdfHrefs[cert.title]} lang={lang} />
             </RevealItem>
           ))}
         </RevealGroup>

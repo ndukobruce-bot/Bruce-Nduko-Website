@@ -6,8 +6,9 @@ import { GrainGradient } from "@/components/grain-gradient";
 import { MagneticButton } from "@/components/magnetic-button";
 import { Monogram } from "@/components/monogram";
 import { fileExistsInPublic } from "@/lib/files";
+import { i18n, pick, type Lang } from "@/content/i18n";
 
-export function Hero() {
+export function Hero({ lang }: { lang: Lang }) {
   const hasPhoto =
     profile.photo && fileExistsInPublic(profile.photo.replace(/^\//, ""));
 
@@ -30,15 +31,15 @@ export function Hero() {
           </h1>
 
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-            {profile.positioning}
+            {pick(lang, i18n.hero.bio)}
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
             <MagneticButton href="#work">
-              See the work <ArrowDown size={15} />
+              {pick(lang, i18n.hero.ctaWork)} <ArrowDown size={15} />
             </MagneticButton>
             <MagneticButton href={`mailto:${profile.contact.email}`} variant="ghost">
-              <Mail size={15} /> Get in touch
+              <Mail size={15} /> {pick(lang, i18n.hero.ctaContact)}
             </MagneticButton>
           </div>
 

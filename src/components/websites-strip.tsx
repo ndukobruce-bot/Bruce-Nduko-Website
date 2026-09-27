@@ -1,10 +1,11 @@
 import { ExternalLink } from "lucide-react";
 import { projects } from "@/content/projects";
 import { Reveal } from "@/components/reveal";
+import { i18n, pick, type Lang } from "@/content/i18n";
 
 // Data-driven on purpose: add a new site by setting `isWebsite: true` and a
 // `link` on a project in /content/projects.ts — nothing else to touch.
-export function WebsitesStrip() {
+export function WebsitesStrip({ lang }: { lang: Lang }) {
   const websites = projects.filter((p) => p.isWebsite && p.link);
 
   if (websites.length === 0) return null;
@@ -14,7 +15,7 @@ export function WebsitesStrip() {
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-            Websites I&rsquo;ve built
+            {pick(lang, i18n.websitesStrip.kicker)}
           </p>
         </Reveal>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

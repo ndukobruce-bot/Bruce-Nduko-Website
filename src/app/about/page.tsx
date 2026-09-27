@@ -7,15 +7,33 @@ import { skills } from "@/content/skills";
 import { Reveal } from "@/components/reveal";
 import { MagneticButton } from "@/components/magnetic-button";
 import { fileExistsInPublic } from "@/lib/files";
+import { i18n, pick, fill } from "@/content/i18n";
+import { getLang } from "@/lib/lang";
 
 export const metadata: Metadata = {
   title: "About — Bruce Nduko",
   description: profile.positioning,
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const lang = await getLang();
   const hasCv = fileExistsInPublic("cv.pdf");
   const hasPhoto = profile.photo && fileExistsInPublic(profile.photo.replace(/^\//, ""));
+
+  const paragraph1 = fill(pick(lang, i18n.about.paragraph1), {
+    location: profile.location,
+    credential: profile.education[0].credential,
+    institution: profile.education[0].institution,
+    detail: profile.education[0].detail,
+    credential2: profile.education[1].credential,
+    institution2: profile.education[1].institution,
+    detail2: profile.education[1].detail,
+  });
+  const paragraph2 = fill(pick(lang, i18n.about.paragraph2), {
+    tijaName: tija.name,
+    role: tija.myRole.toLowerCase(),
+  });
+  const paragraph3 = pick(lang, i18n.about.paragraph3);
 
   return (
     <div className="px-6 py-24">
@@ -39,7 +57,7 @@ export default function AboutPage() {
             </div>
           )}
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-            About
+            {pick(lang, i18n.about.kicker)}
           </p>
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             {profile.name}
@@ -51,27 +69,9 @@ export default function AboutPage() {
 
         <Reveal delay={0.05}>
           <div className="mt-12 space-y-6 text-lg leading-relaxed text-muted">
-            <p>
-              I&rsquo;m a student and founder based in {profile.location}. I&rsquo;m
-              reading {profile.education[0].credential} at{" "}
-              {profile.education[0].institution} ({profile.education[0].detail}),
-              and separately working through {profile.education[1].institution}
-              &rsquo;s {profile.education[1].credential} (
-              {profile.education[1].detail}).
-            </p>
-            <p>
-              I care about the informal economy and productivity because
-              that&rsquo;s where most of the work in Kenya actually happens,
-              and it&rsquo;s the part of the economy that has the least
-              tooling built for it. At {tija.name} I&rsquo;m {tija.myRole.toLowerCase()}
-            </p>
-            <p>
-              I design, build, and ship end-to-end: product decisions,
-              engineering, infrastructure, and deployment. I work
-              AI-assisted — pairing with tools like Claude and Codex to move
-              fast — but I own the architecture, the security, and the
-              decisions myself.
-            </p>
+            <p>{paragraph1}</p>
+            <p>{paragraph2}</p>
+            <p>{paragraph3}</p>
           </div>
         </Reveal>
         </div>
@@ -79,7 +79,7 @@ export default function AboutPage() {
         <Reveal delay={0.1}>
           <div className="mt-14">
             <h2 className="text-xs font-medium uppercase tracking-wide text-muted">
-              Education
+              {pick(lang, i18n.about.education)}
             </h2>
             <ul className="mt-4 space-y-3">
               {profile.education.map((e) => (
@@ -100,7 +100,7 @@ export default function AboutPage() {
         <Reveal delay={0.12}>
           <div className="mt-14">
             <h2 className="text-xs font-medium uppercase tracking-wide text-muted">
-              Skills
+              {pick(lang, i18n.about.skills)}
             </h2>
             <div className="mt-4 space-y-4">
               {skills.map((group) => (
@@ -125,11 +125,11 @@ export default function AboutPage() {
         <Reveal delay={0.15}>
           <div className="mt-14 flex flex-wrap gap-3">
             <MagneticButton href={`mailto:${profile.contact.email}`}>
-              Email me
+              {pick(lang, i18n.about.emailMe)}
             </MagneticButton>
             {hasCv && (
               <MagneticButton variant="ghost" href={links.cvPath}>
-                Download CV
+                {pick(lang, i18n.about.downloadCv)}
               </MagneticButton>
             )}
           </div>

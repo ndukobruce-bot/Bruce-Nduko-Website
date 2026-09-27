@@ -2,8 +2,9 @@ import Link from "next/link";
 import { profile } from "@/content/profile";
 import { links } from "@/content/links";
 import { TerminalStrip } from "@/components/terminal-strip";
+import { i18n, pick, type Lang } from "@/content/i18n";
 
-export function Footer() {
+export function Footer({ lang }: { lang: Lang }) {
   return (
     <footer className="relative z-10 border-t border-border">
       {/* Feathered fill instead of a flat bg-bg rect — fades in from
@@ -27,19 +28,28 @@ export function Footer() {
         </p>
         <div className="flex flex-wrap gap-5">
           <Link href="/projects" className="hover:text-accent">
-            Projects
+            {pick(lang, i18n.footer.projects)}
           </Link>
           <Link href="/certifications" className="hover:text-accent">
-            Certifications
+            {pick(lang, i18n.footer.certifications)}
           </Link>
           <Link href="/about" className="hover:text-accent">
-            About
+            {pick(lang, i18n.footer.about)}
           </Link>
           <Link href="/now" className="hover:text-accent">
-            Now
+            {pick(lang, i18n.footer.now)}
+          </Link>
+          <Link href="/principles" className="hover:text-accent">
+            {pick(lang, i18n.footer.principles)}
+          </Link>
+          <Link href="/terminal" className="hover:text-accent">
+            {pick(lang, i18n.footer.terminal)}
+          </Link>
+          <Link href="/uses" className="hover:text-accent">
+            {pick(lang, i18n.footer.uses)}
           </Link>
           <a href={`mailto:${profile.contact.email}`} className="hover:text-accent">
-            Email
+            {pick(lang, i18n.footer.email)}
           </a>
           {links.social.github && (
             <a

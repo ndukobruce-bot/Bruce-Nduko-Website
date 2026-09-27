@@ -10,14 +10,17 @@ import {
 import { ProjectCard } from "@/components/project-card";
 import { RevealGroup, RevealItem, revealItem } from "@/components/reveal";
 import { cn } from "@/lib/utils";
+import { i18n, pick, type Lang } from "@/content/i18n";
 
 const statuses: ProjectStatus[] = ["live", "beta", "in-build", "concept"];
 const categories: ProjectCategory[] = ["Web", "Mobile", "AI", "Payments"];
 
 export function ProjectsGrid({
   covers,
+  lang,
 }: {
   covers: Record<string, string | undefined>;
+  lang: Lang;
 }) {
   const [status, setStatus] = useState<ProjectStatus | "all">("all");
   const [category, setCategory] = useState<ProjectCategory | "all">("all");
@@ -34,7 +37,7 @@ export function ProjectsGrid({
     <div>
       <div className="flex flex-wrap gap-2">
         <FilterButton active={status === "all"} onClick={() => setStatus("all")}>
-          All statuses
+          {pick(lang, i18n.projects.filterAllStatuses)}
         </FilterButton>
         {statuses.map((s) => (
           <FilterButton
@@ -52,7 +55,7 @@ export function ProjectsGrid({
           active={category === "all"}
           onClick={() => setCategory("all")}
         >
-          All categories
+          {pick(lang, i18n.projects.filterAllCategories)}
         </FilterButton>
         {categories.map((c) => (
           <FilterButton
@@ -67,7 +70,7 @@ export function ProjectsGrid({
 
       {filtered.length === 0 ? (
         <p className="mt-16 text-sm text-muted">
-          No projects match those filters.
+          {pick(lang, i18n.projects.emptyState)}
         </p>
       ) : (
         <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

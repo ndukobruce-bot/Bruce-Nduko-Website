@@ -1,8 +1,9 @@
 import { ExternalLink } from "lucide-react";
 import { tija } from "@/content/tija";
 import { Reveal } from "@/components/reveal";
+import { i18n, pick, type Lang } from "@/content/i18n";
 
-export function TijaSpotlight() {
+export function TijaSpotlight({ lang }: { lang: Lang }) {
   return (
     <section
       id="tija"
@@ -29,7 +30,7 @@ export function TijaSpotlight() {
       <div className="relative mx-auto max-w-6xl">
         <Reveal>
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-accent">
-            The main thing
+            {pick(lang, i18n.tijaSpotlight.kicker)}
           </p>
         </Reveal>
 
@@ -66,13 +67,13 @@ export function TijaSpotlight() {
           <div className={`mt-10 grid gap-6 ${tija.stage ? "sm:grid-cols-3" : "sm:grid-cols-2"}`}>
             <div className="rounded-2xl border border-border bg-bg p-6">
               <p className="text-xs uppercase tracking-wide text-muted">
-                My role
+                {pick(lang, i18n.tijaSpotlight.myRole)}
               </p>
               <p className="mt-2 text-sm leading-relaxed">{tija.myRole}</p>
             </div>
             <div className="rounded-2xl border border-border bg-bg p-6">
               <p className="text-xs uppercase tracking-wide text-muted">
-                Co-founder
+                {pick(lang, i18n.tijaSpotlight.cofounder)}
               </p>
               <p className="mt-2 text-sm leading-relaxed">
                 {tija.cofounder.name} — {tija.cofounder.role}
@@ -81,7 +82,7 @@ export function TijaSpotlight() {
             {tija.stage && (
               <div className="rounded-2xl border border-border bg-bg p-6">
                 <p className="text-xs uppercase tracking-wide text-muted">
-                  Stage
+                  {pick(lang, i18n.tijaSpotlight.stage)}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   {tija.stage}
