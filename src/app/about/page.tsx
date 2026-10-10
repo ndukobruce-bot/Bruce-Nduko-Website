@@ -21,6 +21,7 @@ export default async function AboutPage() {
   const hasPhoto = profile.photo && fileExistsInPublic(profile.photo.replace(/^\//, ""));
 
   const paragraph1 = fill(pick(lang, i18n.about.paragraph1), {
+    age: String(profile.age),
     location: profile.location,
     credential: profile.education[0].credential,
     institution: profile.education[0].institution,

@@ -6,7 +6,7 @@ import { GrainGradient } from "@/components/grain-gradient";
 import { MagneticButton } from "@/components/magnetic-button";
 import { Monogram } from "@/components/monogram";
 import { fileExistsInPublic } from "@/lib/files";
-import { i18n, pick, type Lang } from "@/content/i18n";
+import { i18n, pick, fill, type Lang } from "@/content/i18n";
 
 export function Hero({ lang }: { lang: Lang }) {
   const hasPhoto =
@@ -44,6 +44,7 @@ export function Hero({ lang }: { lang: Lang }) {
           </div>
 
           <p className="mt-6 text-sm text-muted">
+            {fill(pick(lang, i18n.hero.yearsOld), { age: String(profile.age) })} ·{" "}
             {profile.location} · {profile.region}
           </p>
         </div>

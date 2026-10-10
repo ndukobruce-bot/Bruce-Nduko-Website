@@ -16,6 +16,9 @@ export type IntroVideo = {
 export const profile = {
   name: "Bruce Nduko",
   headline: "Co-Founder & CTO, Tija Labs",
+  // Age as given (Oct 2026). No birth date on file, so this is a plain
+  // number — update it by hand on his birthday.
+  age: 19,
   location: "Nairobi, Kenya",
   region: "East Africa",
   timezone: "Africa/Nairobi",

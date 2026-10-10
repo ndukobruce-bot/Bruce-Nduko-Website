@@ -38,6 +38,8 @@ export const i18n = {
   hero: {
     ctaWork: { en: "See the work", sw: "Angalia kazi yangu" } as Pair,
     ctaContact: { en: "Get in touch", sw: "Wasiliana nami" } as Pair,
+    // {age} is substituted from profile.age.
+    yearsOld: { en: "{age} years old", sw: "Umri wa miaka {age}" } as Pair,
     // The bio itself — mirrors profile.positioning in meaning, not a literal
     // word-for-word translation.
     bio: {
@@ -97,12 +99,12 @@ export const i18n = {
     skills: { en: "Skills", sw: "Ujuzi" } as Pair,
     emailMe: { en: "Email me", sw: "Nitumie barua pepe" } as Pair,
     downloadCv: { en: "Download CV", sw: "Pakua CV" } as Pair,
-    // {location}/{credential}/{institution}/{detail}/{credential2}/{institution2}/
+    // {age}/{location}/{credential}/{institution}/{detail}/{credential2}/{institution2}/
     // {detail2}/{tijaName}/{role} are substituted in from profile/tija data —
     // never invented, always the same facts as the English version.
     paragraph1: {
-      en: "I'm a student and founder based in {location}. I'm reading {credential} at {institution} ({detail}), and separately working through {institution2}'s {credential2} ({detail2}).",
-      sw: "Mimi ni mwanafunzi na mjasiriamali ninayeishi {location}. Ninasoma {credential} katika {institution} ({detail}), na kwa upande mwingine ninasomea {credential2} kupitia {institution2} ({detail2}).",
+      en: "I'm a {age}-year-old student and founder based in {location}. I'm reading {credential} at {institution} ({detail}), and separately working through {institution2}'s {credential2} ({detail2}).",
+      sw: "Mimi ni mwanafunzi na mjasiriamali mwenye umri wa miaka {age}, ninayeishi {location}. Ninasoma {credential} katika {institution} ({detail}), na kwa upande mwingine ninasomea {credential2} kupitia {institution2} ({detail2}).",
     } as Pair,
     paragraph2: {
       en: "I care about the informal economy and productivity because that's where most of the work in Kenya actually happens, and it's the part of the economy that has the least tooling built for it. At {tijaName} I'm {role}",
@@ -118,8 +120,8 @@ export const i18n = {
     ctaMore: { en: "More about how I work", sw: "Zaidi kuhusu jinsi ninavyofanya kazi" } as Pair,
     // {location}/{credential}/{institution}/{detail} substituted from profile.
     bio: {
-      en: "I'm a founder-engineer based in {location}, studying {credential} at {institution} ({detail}), and building AI productivity tools for Africa's next billion workers.",
-      sw: "Mimi ni mjasiriamali na mhandisi ninayeishi {location}, ninasoma {credential} katika {institution} ({detail}), na kujenga zana za tija za AI kwa kizazi kijacho cha wafanyakazi bilioni moja barani Afrika.",
+      en: "I'm a {age}-year-old founder-engineer based in {location}, studying {credential} at {institution} ({detail}), and building AI productivity tools for Africa's next billion workers.",
+      sw: "Mimi ni mjasiriamali na mhandisi mwenye umri wa miaka {age}, ninayeishi {location}, ninasoma {credential} katika {institution} ({detail}), na kujenga zana za tija za AI kwa kizazi kijacho cha wafanyakazi bilioni moja barani Afrika.",
     } as Pair,
   },
   shipLog: {

@@ -6,6 +6,7 @@ import { i18n, pick, fill, type Lang } from "@/content/i18n";
 
 export function AboutTeaser({ lang }: { lang: Lang }) {
   const bio = fill(pick(lang, i18n.aboutTeaser.bio), {
+    age: String(profile.age),
     location: profile.location,
     credential: profile.education[0].credential,
     institution: profile.education[0].institution,

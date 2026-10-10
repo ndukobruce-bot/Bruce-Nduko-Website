@@ -109,7 +109,7 @@ function whoamiLines(): TerminalLine[] {
   return [
     { text: profile.name, tone: "accent" },
     { text: profile.headline },
-    { text: profile.location },
+    { text: `${profile.age} years old · ${profile.location}` },
     { text: "" },
     { text: profile.positioning, tone: "muted" },
   ];
