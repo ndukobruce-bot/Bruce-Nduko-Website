@@ -2,8 +2,8 @@ import Image from "next/image";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 import { certifications } from "@/content/certifications";
-import { links } from "@/content/links";
 import { fileExistsInPublic } from "@/lib/files";
+import { ContactDialog } from "@/components/contact-dialog";
 
 export default function Home() {
   const hasPhoto =
@@ -27,14 +27,7 @@ export default function Home() {
             people can use.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a className="rounded-md bg-accent-rich px-5 py-3 text-sm font-medium text-accent-ink hover:opacity-90" href={`mailto:${profile.contact.email}`}>
-              Get in touch
-            </a>
-            {links.social.linkedin && (
-              <a className="rounded-md border border-border px-5 py-3 text-sm font-medium hover:border-accent" href={links.social.linkedin} target="_blank" rel="noopener noreferrer">
-                LinkedIn
-              </a>
-            )}
+            <ContactDialog />
           </div>
         </div>
         {hasPhoto && (
