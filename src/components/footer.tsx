@@ -1,26 +1,11 @@
 import Link from "next/link";
 import { profile } from "@/content/profile";
 import { links } from "@/content/links";
-import { TerminalStrip } from "@/components/terminal-strip";
 import { i18n, pick, type Lang } from "@/content/i18n";
 
 export function Footer({ lang }: { lang: Lang }) {
   return (
     <footer className="relative z-10 border-t border-border">
-      {/* Feathered fill instead of a flat bg-bg rect — fades in from
-          transparent at the top edge so the code behind it shows through
-          smoothly rather than cutting off at a hard line. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-bg"
-        style={{
-          maskImage: "linear-gradient(to bottom, transparent, black 120px)",
-          WebkitMaskImage: "linear-gradient(to bottom, transparent, black 120px)",
-        }}
-      />
-      <div className="mx-auto max-w-6xl px-6 pt-8">
-        <TerminalStrip />
-      </div>
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 text-sm text-muted md:flex-row md:items-center md:justify-between">
         <p>
           &copy; {new Date().getFullYear()} {profile.name}. Built from{" "}

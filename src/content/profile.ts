@@ -34,14 +34,14 @@ export const profile = {
       detail: `Class of ${graduationYear}`,
     },
     {
-      credential: "Masters in Artificial Intelligence",
-      institution: "Udacity",
+      credential: "MBA in AI Product Management",
+      institution: "",
       detail: "In progress",
     },
     {
       credential: "AI Programming with Python Nanodegree",
       institution: "Udacity",
-      detail: "In progress",
+      detail: "Completed",
     },
     {
       credential: "Microsoft AI-900: Azure AI Fundamentals",

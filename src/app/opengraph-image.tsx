@@ -16,7 +16,7 @@ export default function Image() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#0b0b0c",
+          background: "#fbf5e9",
           color: "#f5f5f5",
           fontFamily: "sans-serif",
         }}
@@ -46,7 +46,7 @@ export default function Image() {
           style={{
             fontSize: 36,
             marginTop: 24,
-            color: "#e6c65c",
+            color: "#9b431c",
           }}
         >
           {profile.headline}

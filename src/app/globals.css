@@ -1,25 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  /* The site is always dark — one fixed palette, no light mode, no class
-     switching. Raw tokens live unprefixed here; @theme inline below maps
-     them to the --color-* names Tailwind turns into utilities (bg-bg,
-     text-text, ...). Two different names on purpose so the mapping isn't
-     self-referential. */
-  --bg: #0b0b0c;
-  --surface: #1a1a1a;
-  --surface-2: #232323;
-  --text: #f5f5f5;
-  --muted: #9a9a9a;
-  --border: #2b2b2b;
-
-  /* Gold is the site's signature: --accent is the readable-as-text gold
-     (labels, links, keywords, borders, dots), --accent-rich is the more
-     saturated gold used for FILLS (primary buttons, glows, shimmer),
-     always paired with --accent-ink for guaranteed contrast. */
-  --accent: #e6c65c;
-  --accent-rich: #c9a227;
-  --accent-ink: #1a1204;
+  --bg: #fbf5e9;
+  --surface: #f3e8d6;
+  --surface-2: #ead9c1;
+  --text: #342016;
+  --muted: #796554;
+  --border: #e3d2bb;
+  --accent: #9b431c;
+  --accent-rich: #a9471c;
+  --accent-ink: #fff8ed;
 }
 
 @theme inline {
@@ -41,9 +31,7 @@
   border-color: var(--color-border);
 }
 
-html {
-  color-scheme: dark;
-}
+html { color-scheme: light; }
 
 body {
   background: var(--color-bg);
@@ -68,10 +56,7 @@ body {
   }
 }
 
-.grain {
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
-  background-size: 160px 160px;
-}
+.grain { background-image: none; }
 
 /* One-time gold sweep across the hero name on load. Neutralized by the
    prefers-reduced-motion block above (animation-duration forced to ~0). */

@@ -27,7 +27,7 @@ export default async function AboutPage() {
     institution: profile.education[0].institution,
     detail: profile.education[0].detail,
     credential2: profile.education[1].credential,
-    institution2: profile.education[1].institution,
+    institution2: profile.education[1].institution || "",
     detail2: profile.education[1].detail,
   });
   const paragraph2 = fill(pick(lang, i18n.about.paragraph2), {

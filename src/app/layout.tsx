@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
-import { Footer } from "@/components/footer";
-import { CommandPalette } from "@/components/command-palette";
-import { CodeBackground } from "@/components/code-background";
 import { profile } from "@/content/profile";
-import { getLang } from "@/lib/lang";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -40,20 +36,15 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const lang = await getLang();
-
   return (
     <html
-      lang={lang}
-      style={{ colorScheme: "dark" }}
+      lang="en"
+      style={{ colorScheme: "light" }}
       className={`${jakarta.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg text-text selection:bg-accent-rich selection:text-accent-ink">
-        <CodeBackground />
-        <Nav lang={lang} />
+        <Nav />
         <main className="relative z-10 flex-1">{children}</main>
-        <Footer lang={lang} />
-        <CommandPalette />
       </body>
     </html>
   );

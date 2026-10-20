@@ -40,9 +40,9 @@ function pickColumnCount(width: number): number {
 
 // Fixed dark palette — the site has one theme, so this never needs to be
 // re-read from CSS or refreshed on a theme change.
-const KEYWORD_COLOR = "#e6c65c";
+const KEYWORD_COLOR = "#9b431c";
 const MUTED_COLOR = "rgb(245,245,245)";
-const BG_RGB: [number, number, number] = [11, 11, 12];
+const BG_RGB: [number, number, number] = [251, 245, 233];
 const OPACITY = 0.2;
 
 /**
