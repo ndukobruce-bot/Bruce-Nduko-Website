@@ -99,12 +99,11 @@ export const i18n = {
     skills: { en: "Skills", sw: "Ujuzi" } as Pair,
     emailMe: { en: "Email me", sw: "Nitumie barua pepe" } as Pair,
     downloadCv: { en: "Download CV", sw: "Pakua CV" } as Pair,
-    // {age}/{location}/{credential}/{institution}/{detail}/{credential2}/{institution2}/
-    // {detail2}/{tijaName}/{role} are substituted in from profile/tija data —
+    // Education tokens and {tijaName}/{role} are substituted from profile/tija data —
     // never invented, always the same facts as the English version.
     paragraph1: {
-      en: "I'm a {age}-year-old student and founder based in {location}. I'm reading {credential} at {institution} ({detail}), and separately working through {institution2}'s {credential2} ({detail2}).",
-      sw: "Mimi ni mwanafunzi na mjasiriamali mwenye umri wa miaka {age}, ninayeishi {location}. Ninasoma {credential} katika {institution} ({detail}), na kwa upande mwingine ninasomea {credential2} kupitia {institution2} ({detail2}).",
+      en: "I'm a {age}-year-old student and founder based in {location}. I'm reading {credential} at {institution} ({detail}), pursuing {credential2} ({detail2}), and studying {credential3} through {institution3} ({detail3}).",
+      sw: "Mimi ni mwanafunzi na mjasiriamali mwenye umri wa miaka {age}, ninayeishi {location}. Ninasoma {credential} katika {institution} ({detail}), ninafuatilia {credential2} ({detail2}), na ninasomea {credential3} kupitia {institution3} ({detail3}).",
     } as Pair,
     paragraph2: {
       en: "I care about the informal economy and productivity because that's where most of the work in Kenya actually happens, and it's the part of the economy that has the least tooling built for it. At {tijaName} I'm {role}",

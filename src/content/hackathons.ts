@@ -18,7 +18,6 @@ export const hackathons: Hackathon[] = [
       "Co-designing ML models and custom kernels on AWS Trainium2 chips, hosted by AWS Annapurna Labs.",
     items: [],
     result: "Ranked 14th on the Phase 1 public leaderboard",
-    link: "https://trainium-frontier.devpost.com/",
     badge: "#14",
   },
   {
