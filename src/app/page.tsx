@@ -19,9 +19,12 @@ export default function Home() {
           </h1>
           <p className="mt-4 text-lg text-muted">{profile.headline}</p>
           <p className="mt-6 max-w-xl leading-7 text-muted">
-            I build useful technology and lead product work. I have completed
-            the AI Programming with Python Nanodegree and am now pursuing an MBA
-            in AI Product Management.
+            I’m building systems that make Africa’s next billion workers
+            impossible to ignore, one well-placed semicolon at a time. I turn
+            ambitious ideas into practical products, bringing together code,
+            AI, and product thinking to solve problems that matter. I write
+            Python to turn raw data into decisions and prototypes into tools
+            people can use.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a className="rounded-md bg-accent-rich px-5 py-3 text-sm font-medium text-accent-ink hover:opacity-90" href={`mailto:${profile.contact.email}`}>
