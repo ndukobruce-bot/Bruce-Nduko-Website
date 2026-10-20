@@ -40,7 +40,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      style={{ colorScheme: "light" }}
+      style={{ colorScheme: "dark" }}
       className={`${jakarta.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg text-text selection:bg-accent-rich selection:text-accent-ink">
