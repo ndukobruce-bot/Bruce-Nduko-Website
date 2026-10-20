@@ -38,12 +38,11 @@ function pickColumnCount(width: number): number {
   return Math.min(6, Math.max(4, Math.round(width / 280)));
 }
 
-// Fixed dark palette — the site has one theme, so this never needs to be
-// re-read from CSS or refreshed on a theme change.
-const KEYWORD_COLOR = "#9b431c";
-const MUTED_COLOR = "rgb(245,245,245)";
+// Warm high-contrast ink colors tuned for the cream site background.
+const KEYWORD_COLOR = "#a9471c";
+const MUTED_COLOR = "rgb(52,32,22)";
 const BG_RGB: [number, number, number] = [251, 245, 233];
-const OPACITY = 0.2;
+const OPACITY = 0.36;
 
 /**
  * The site-wide code background: one fixed canvas behind everything, drawn
@@ -168,9 +167,9 @@ export function CodeBackground() {
     }
 
     function buildColumns() {
-      const fontSize = width < 640 ? 11 : 12;
+      const fontSize = width < 640 ? 10 : 12;
       const lineHeight = Math.round(fontSize * 1.6);
-      const count = pickColumnCount(width);
+      const count = Math.max(2, pickColumnCount(width));
       const colWidth = width / count;
       const maxLines = Math.ceil(height / lineHeight) + 1;
 
@@ -325,7 +324,7 @@ export function CodeBackground() {
       for (const r of clearRects) {
         if (r.bottom < -100 || r.top > height + 100) continue;
 
-        const featherPad = 64;
+        const featherPad = 36;
         const fx = r.x - featherPad;
         const fy = r.y - featherPad;
         const fw = r.width + featherPad * 2;
@@ -338,16 +337,16 @@ export function CodeBackground() {
           fy + fh / 2,
           Math.max(fw, fh) * 0.65
         );
-        grd.addColorStop(0, `rgba(${br},${bg},${bb},0.92)`);
-        grd.addColorStop(0.55, `rgba(${br},${bg},${bb},0.6)`);
+        grd.addColorStop(0, `rgba(${br},${bg},${bb},0.78)`);
+        grd.addColorStop(0.55, `rgba(${br},${bg},${bb},0.36)`);
         grd.addColorStop(1, `rgba(${br},${bg},${bb},0)`);
         ctx!.fillStyle = grd;
         fillRoundRect(fx, fy, fw, fh, 56);
 
-        const innerPad = 22;
+        const innerPad = 12;
         const iw = r.width + innerPad * 2;
         const ih = r.height + innerPad * 2;
-        ctx!.fillStyle = `rgba(${br},${bg},${bb},0.9)`;
+        ctx!.fillStyle = `rgba(${br},${bg},${bb},0.68)`;
         fillRoundRect(r.x - innerPad, r.y - innerPad, iw, ih, Math.min(48, ih / 2));
       }
       ctx!.restore();

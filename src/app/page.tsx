@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-16 sm:py-24">
       <section className="flex flex-col-reverse items-start gap-10 sm:flex-row sm:items-center sm:justify-between sm:gap-12">
-        <div className="max-w-2xl">
+        <div data-code-clear className="max-w-2xl rounded-2xl bg-bg/75 p-5 backdrop-blur-[2px] sm:p-7">
           <p className="text-sm font-medium text-accent">{profile.location}</p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-6xl">
             {profile.name}

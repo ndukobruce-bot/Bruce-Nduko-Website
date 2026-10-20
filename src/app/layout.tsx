@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/nav";
+import { CodeBackground } from "@/components/code-background";
 import { profile } from "@/content/profile";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -43,6 +44,7 @@ export default async function RootLayout({
       className={`${jakarta.variable} ${jetbrains.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-bg text-text selection:bg-accent-rich selection:text-accent-ink">
+        <CodeBackground />
         <Nav />
         <main className="relative z-10 flex-1">{children}</main>
       </body>

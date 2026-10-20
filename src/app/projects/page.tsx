@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { ProjectsGrid } from "@/components/projects-grid";
 import { HackathonsStrip } from "@/components/hackathons-strip";
-import { projects } from "@/content/projects";
-import { getProjectCovers } from "@/lib/files";
 import { i18n, pick } from "@/content/i18n";
 import { getLang } from "@/lib/lang";
 
@@ -13,7 +11,6 @@ export const metadata: Metadata = {
 
 export default async function ProjectsPage() {
   const lang = await getLang();
-  const covers = getProjectCovers(projects.map((p) => p.slug));
 
   return (
     <div className="px-6 py-24">
@@ -28,7 +25,7 @@ export default async function ProjectsPage() {
         </div>
 
         <div className="mt-12">
-          <ProjectsGrid covers={covers} lang={lang} />
+          <ProjectsGrid />
         </div>
 
         <div className="mt-24">
