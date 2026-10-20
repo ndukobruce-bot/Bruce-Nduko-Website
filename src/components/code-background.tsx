@@ -38,11 +38,11 @@ function pickColumnCount(width: number): number {
   return Math.min(6, Math.max(4, Math.round(width / 280)));
 }
 
-// Monochrome code colors tuned for the black site background.
-const KEYWORD_COLOR = "#ffffff";
-const MUTED_COLOR = "rgb(225,225,225)";
-const BG_RGB: [number, number, number] = [8, 8, 8];
-const OPACITY = 0.42;
+// Muted blue-white code colors tuned for the slate site background.
+const KEYWORD_COLOR = "#b7d0e1";
+const MUTED_COLOR = "rgb(226,234,240)";
+const BG_RGB: [number, number, number] = [16, 24, 32];
+const OPACITY = 0.36;
 
 /**
  * The site-wide code background: one fixed canvas behind everything, drawn
