@@ -39,7 +39,7 @@ export const profile = {
       detail: "In progress",
     },
     {
-      credential: "Masters in Artificial Intelligence",
+      credential: "Master’s in Artificial Intelligence",
       institution: "Udacity",
       detail: "In progress",
     },

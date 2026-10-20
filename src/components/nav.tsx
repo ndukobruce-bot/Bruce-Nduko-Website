@@ -9,7 +9,7 @@ export function Nav() {
         <nav aria-label="Main navigation" className="flex gap-5 text-sm text-muted">
           <Link className="hover:text-accent" href="/projects">Work</Link>
           <Link className="hover:text-accent" href="/about">About</Link>
-          <a className="hover:text-accent" href={`mailto:${profile.contact.email}`}>Contact</a>
+          <Link className="hover:text-accent" href="/#contact">Contact</Link>
         </nav>
       </div>
     </header>
