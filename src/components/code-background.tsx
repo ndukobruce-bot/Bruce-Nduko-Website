@@ -38,11 +38,11 @@ function pickColumnCount(width: number): number {
   return Math.min(6, Math.max(4, Math.round(width / 280)));
 }
 
-// Warm high-contrast ink colors tuned for the cream site background.
-const KEYWORD_COLOR = "#a9471c";
-const MUTED_COLOR = "rgb(52,32,22)";
-const BG_RGB: [number, number, number] = [251, 245, 233];
-const OPACITY = 0.36;
+// Monochrome ink colors tuned for the white site background.
+const KEYWORD_COLOR = "#111111";
+const MUTED_COLOR = "rgb(35,35,35)";
+const BG_RGB: [number, number, number] = [255, 255, 255];
+const OPACITY = 0.32;
 
 /**
  * The site-wide code background: one fixed canvas behind everything, drawn
