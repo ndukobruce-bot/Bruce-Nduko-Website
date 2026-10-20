@@ -41,7 +41,7 @@ export default function Home() {
             width={192}
             height={192}
             priority
-            className="size-36 rounded-full object-cover sm:size-48"
+            className="size-36 rounded-full object-cover object-[center_24%] sm:size-48"
           />
         )}
       </section>
