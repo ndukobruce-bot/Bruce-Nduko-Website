@@ -39,6 +39,11 @@ export const profile = {
       detail: "In progress",
     },
     {
+      credential: "Masters in Artificial Intelligence",
+      institution: "Udacity",
+      detail: "In progress",
+    },
+    {
       credential: "AI Programming with Python Nanodegree",
       institution: "Udacity",
       detail: "Completed",
@@ -46,7 +51,7 @@ export const profile = {
     {
       credential: "Microsoft AI-900: Azure AI Fundamentals",
       institution: "Microsoft",
-      detail: "In progress",
+      detail: "Completed",
     },
   ],
 
