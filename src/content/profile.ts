@@ -35,7 +35,7 @@ export const profile = {
     },
     {
       credential: "MBA in AI Product Management",
-      institution: "",
+      institution: "Udacity",
       detail: "In progress",
     },
     {
