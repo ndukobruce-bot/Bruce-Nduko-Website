@@ -102,7 +102,7 @@ export const i18n = {
     // Education tokens and {tijaName}/{role} are substituted from profile/tija data —
     // never invented, always the same facts as the English version.
     paragraph1: {
-      en: "I'm a {age}-year-old student and founder based in {location}. I'm reading {credential} at {institution} ({detail}), pursuing {credential2} ({detail2}), and studying {credential3} through {institution3} ({detail3}).",
+      en: "I'm a 19-year-old student and founder based in Nairobi, Kenya. I'm pursuing my BSc in Computer Science at Zetech University.This is my first month. (Class of 2029), MBA in AI Product Management and studying Master’s in Artificial Intelligence(Both in Progress) through Udacity. ",
       sw: "Mimi ni mwanafunzi na mjasiriamali mwenye umri wa miaka {age}, ninayeishi {location}. Ninasoma {credential} katika {institution} ({detail}), ninafuatilia {credential2} ({detail2}), na ninasomea {credential3} kupitia {institution3} ({detail3}).",
     } as Pair,
     paragraph2: {
