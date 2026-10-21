@@ -110,8 +110,8 @@ export const i18n = {
       sw: "Ninajali kuhusu uchumi wa kawaida na tija kwa sababu hapo ndipo kazi nyingi nchini Kenya hufanyika, na ni sehemu ya uchumi iliyo na zana chache zilizojengwa kwa ajili yake. Katika {tijaName} mimi ni {role}",
     } as Pair,
     paragraph3: {
-      en: "I design, build, and ship end-to-end: product decisions, engineering, infrastructure, and deployment. I work AI-assisted — pairing with tools like Claude and Codex to move fast — but I own the architecture, the security, and the decisions myself.",
-      sw: "Ninabuni, kujenga, na kuzindua kutoka mwanzo hadi mwisho: maamuzi ya bidhaa, uhandisi, miundombinu, na uzinduzi. Ninafanya kazi kwa msaada wa AI — nikitumia zana kama Claude na Codex ili kwenda kwa kasi — lakini ninamiliki muundo, usalama, na maamuzi mwenyewe.",
+      en: "",
+      sw: "",
     } as Pair,
   },
   aboutTeaser: {
