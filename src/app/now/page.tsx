@@ -3,7 +3,8 @@ import { now } from "@/content/now";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Now — Bruce Nduko",
+  title: "Now",
+  alternates: { canonical: "/now" },
   description: "What Bruce Nduko is focused on right now.",
 };
 

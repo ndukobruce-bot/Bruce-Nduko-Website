@@ -3,7 +3,7 @@ import { TerminalApp } from "@/components/terminal-app";
 import { fileExistsInPublic } from "@/lib/files";
 
 export const metadata: Metadata = {
-  title: "Terminal — Bruce Nduko",
+  title: "Terminal",
   description: "Bruce Nduko's site, as a terminal.",
 };
 

@@ -5,7 +5,8 @@ import { i18n, pick } from "@/content/i18n";
 import { getLang } from "@/lib/lang";
 
 export const metadata: Metadata = {
-  title: "Projects — Bruce Nduko",
+  title: "Projects",
+  alternates: { canonical: "/projects" },
   description: "Everything Bruce Nduko has built — live, in build, or concept.",
 };
 

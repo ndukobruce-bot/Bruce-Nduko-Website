@@ -3,7 +3,7 @@ import { uses } from "@/content/uses";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Uses — Bruce Nduko",
+  title: "Uses",
   description: "Hardware, editor, AI tools, stack, and infra Bruce Nduko uses.",
 };
 

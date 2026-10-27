@@ -33,7 +33,7 @@ export default function Home() {
         {hasPhoto && (
           <Image
             src={profile.photo!}
-            alt={profile.name}
+            alt={`${profile.name}, ${profile.headline}`}
             width={192}
             height={192}
             priority

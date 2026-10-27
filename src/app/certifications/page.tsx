@@ -6,7 +6,7 @@ import { i18n, pick } from "@/content/i18n";
 import { getLang } from "@/lib/lang";
 
 export const metadata: Metadata = {
-  title: "Certifications — Bruce Nduko",
+  title: "Certifications",
   description:
     "Certifications and completed coursework from Codecademy and Udacity.",
 };

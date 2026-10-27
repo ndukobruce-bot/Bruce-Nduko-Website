@@ -53,7 +53,7 @@ export function Hero({ lang }: { lang: Lang }) {
           {hasPhoto ? (
             <Image
               src={profile.photo!}
-              alt={profile.name}
+              alt={`${profile.name}, ${profile.headline}`}
               fill
               priority
               sizes="(min-width: 1024px) 40vw, 100vw"

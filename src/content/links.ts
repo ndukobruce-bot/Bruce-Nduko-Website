@@ -3,6 +3,10 @@
 // nothing renders a fabricated value in the meantime.
 
 export const links = {
+  // Canonical production origin. Used for canonical URLs, sitemap, and
+  // structured data so search engines always see one consistent address.
+  siteUrl: "https://brucenduko.dev",
+
   // GitHub username used to pull public activity (contributions, top
   // languages, recent pushes). Leave empty to hide the GitHub section
   // entirely rather than show fake or wrong data.

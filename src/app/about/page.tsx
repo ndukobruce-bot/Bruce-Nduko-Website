@@ -11,7 +11,8 @@ import { i18n, pick, fill } from "@/content/i18n";
 import { getLang } from "@/lib/lang";
 
 export const metadata: Metadata = {
-  title: "About — Bruce Nduko",
+  title: "About",
+  alternates: { canonical: "/about" },
   description: profile.positioning,
 };
 
@@ -47,7 +48,7 @@ export default async function AboutPage() {
             <div className="mb-8 h-28 w-28 overflow-hidden rounded-full border border-border">
               <Image
                 src={profile.photo!}
-                alt={profile.name}
+                alt={`${profile.name}, ${profile.headline}`}
                 width={224}
                 height={224}
                 className="h-full w-full object-cover"

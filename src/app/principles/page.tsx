@@ -3,7 +3,7 @@ import { principles } from "@/content/principles";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Principles — Bruce Nduko",
+  title: "Principles",
   description: "How Bruce Nduko builds — six working principles.",
 };
 
