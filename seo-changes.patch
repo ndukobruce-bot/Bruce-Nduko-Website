@@ -1,0 +1,353 @@
+diff --git a/src/app/about/page.tsx b/src/app/about/page.tsx
+index 88d0be3..e3e5e16 100644
+--- a/src/app/about/page.tsx
++++ b/src/app/about/page.tsx
+@@ -11,7 +11,8 @@ import { i18n, pick, fill } from "@/content/i18n";
+ import { getLang } from "@/lib/lang";
+ 
+ export const metadata: Metadata = {
+-  title: "About — Bruce Nduko",
++  title: "About",
++  alternates: { canonical: "/about" },
+   description: profile.positioning,
+ };
+ 
+@@ -47,7 +48,7 @@ export default async function AboutPage() {
+             <div className="mb-8 h-28 w-28 overflow-hidden rounded-full border border-border">
+               <Image
+                 src={profile.photo!}
+-                alt={profile.name}
++                alt={`${profile.name}, ${profile.headline}`}
+                 width={224}
+                 height={224}
+                 className="h-full w-full object-cover"
+diff --git a/src/app/certifications/page.tsx b/src/app/certifications/page.tsx
+index 2625cdf..0089c4a 100644
+--- a/src/app/certifications/page.tsx
++++ b/src/app/certifications/page.tsx
+@@ -6,7 +6,7 @@ import { i18n, pick } from "@/content/i18n";
+ import { getLang } from "@/lib/lang";
+ 
+ export const metadata: Metadata = {
+-  title: "Certifications — Bruce Nduko",
++  title: "Certifications",
+   description:
+     "Certifications and completed coursework from Codecademy and Udacity.",
+ };
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index 017adf7..636a83a 100644
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -4,6 +4,8 @@ import "./globals.css";
+ import { Nav } from "@/components/nav";
+ import { CodeBackground } from "@/components/code-background";
+ import { profile } from "@/content/profile";
++import { links } from "@/content/links";
++import { SiteFooter } from "@/components/site-footer";
+ 
+ const jakarta = Plus_Jakarta_Sans({
+   variable: "--font-jakarta",
+@@ -17,21 +19,64 @@ const jetbrains = JetBrains_Mono({
+   display: "swap",
+ });
+ 
+-// Vercel sets this to the current production domain — a custom domain
+-// connected later is picked up automatically with no code change needed.
+-const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+-  : "http://localhost:3000";
++const siteUrl = links.siteUrl;
+ 
+ export const metadata: Metadata = {
+-  title: `${profile.name} — ${profile.headline}`,
++  title: {
++    default: `${profile.name} — ${profile.headline}`,
++    template: `%s | ${profile.name}`,
++  },
+   description: profile.positioning,
+   metadataBase: new URL(siteUrl),
++  applicationName: profile.name,
++  authors: [{ name: profile.name, url: siteUrl }],
++  creator: profile.name,
++  alternates: { canonical: "/" },
++  robots: { index: true, follow: true },
+   openGraph: {
+     title: `${profile.name} — ${profile.headline}`,
+     description: profile.positioning,
+     type: "website",
++    url: siteUrl,
++    siteName: profile.name,
++    locale: "en_KE",
+   },
++  twitter: { card: "summary_large_image" },
++};
++
++const sameAs = [
++  links.social.github,
++  links.social.linkedin,
++  links.social.x,
++  "https://play.google.com/store/apps/details?id=com.leveragex.leveragex",
++].filter(Boolean);
++
++const jsonLd = {
++  "@context": "https://schema.org",
++  "@graph": [
++    {
++      "@type": "Person",
++      "@id": `${siteUrl}/#person`,
++      name: profile.name,
++      url: siteUrl,
++      image: `${siteUrl}${profile.photo ?? "/bruce-nduko.jpg"}`,
++      jobTitle: "Co-Founder & CTO",
++      description: profile.positioning,
++      email: `mailto:${profile.contact.email}`,
++      worksFor: { "@type": "Organization", name: "Tija Labs", url: "https://tijalabs.com" },
++      alumniOf: { "@type": "CollegeOrUniversity", name: "Zetech University" },
++      address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressCountry: "KE" },
++      knowsAbout: ["Software engineering", "Artificial intelligence", "Product development", "Python", "Mobile apps"],
++      sameAs,
++    },
++    {
++      "@type": "WebSite",
++      "@id": `${siteUrl}/#website`,
++      url: siteUrl,
++      name: profile.name,
++      publisher: { "@id": `${siteUrl}/#person` },
++    },
++  ],
+ };
+ 
+ export default async function RootLayout({
+@@ -46,7 +91,14 @@ export default async function RootLayout({
+       <body className="min-h-full flex flex-col bg-bg text-text selection:bg-accent-rich selection:text-accent-ink">
+         <CodeBackground />
+         <Nav />
++        <script
++          type="application/ld+json"
++          dangerouslySetInnerHTML={{
++            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
++          }}
++        />
+         <main className="relative z-10 flex-1">{children}</main>
++        <SiteFooter />
+       </body>
+     </html>
+   );
+diff --git a/src/app/now/page.tsx b/src/app/now/page.tsx
+index 8b263d3..e2bd8de 100644
+--- a/src/app/now/page.tsx
++++ b/src/app/now/page.tsx
+@@ -3,7 +3,8 @@ import { now } from "@/content/now";
+ import { Reveal } from "@/components/reveal";
+ 
+ export const metadata: Metadata = {
+-  title: "Now — Bruce Nduko",
++  title: "Now",
++  alternates: { canonical: "/now" },
+   description: "What Bruce Nduko is focused on right now.",
+ };
+ 
+diff --git a/src/app/page.tsx b/src/app/page.tsx
+index b825f7a..bf6d0df 100644
+--- a/src/app/page.tsx
++++ b/src/app/page.tsx
+@@ -33,7 +33,7 @@ export default function Home() {
+         {hasPhoto && (
+           <Image
+             src={profile.photo!}
+-            alt={profile.name}
++            alt={`${profile.name}, ${profile.headline}`}
+             width={192}
+             height={192}
+             priority
+diff --git a/src/app/principles/page.tsx b/src/app/principles/page.tsx
+index cf75019..8a2bc14 100644
+--- a/src/app/principles/page.tsx
++++ b/src/app/principles/page.tsx
+@@ -3,7 +3,7 @@ import { principles } from "@/content/principles";
+ import { Reveal } from "@/components/reveal";
+ 
+ export const metadata: Metadata = {
+-  title: "Principles — Bruce Nduko",
++  title: "Principles",
+   description: "How Bruce Nduko builds — six working principles.",
+ };
+ 
+diff --git a/src/app/projects/[slug]/page.tsx b/src/app/projects/[slug]/page.tsx
+index da28a5e..4587af5 100644
+--- a/src/app/projects/[slug]/page.tsx
++++ b/src/app/projects/[slug]/page.tsx
+@@ -23,7 +23,7 @@ export async function generateMetadata({
+   const project = projects.find((p) => p.slug === slug);
+   if (!project) return {};
+   return {
+-    title: `${project.name} — Bruce Nduko`,
++    title: project.name,
+     description: project.oneLiner,
+   };
+ }
+diff --git a/src/app/projects/page.tsx b/src/app/projects/page.tsx
+index a6e6a9d..e88f284 100644
+--- a/src/app/projects/page.tsx
++++ b/src/app/projects/page.tsx
+@@ -5,7 +5,8 @@ import { i18n, pick } from "@/content/i18n";
+ import { getLang } from "@/lib/lang";
+ 
+ export const metadata: Metadata = {
+-  title: "Projects — Bruce Nduko",
++  title: "Projects",
++  alternates: { canonical: "/projects" },
+   description: "Everything Bruce Nduko has built — live, in build, or concept.",
+ };
+ 
+diff --git a/src/app/terminal/page.tsx b/src/app/terminal/page.tsx
+index 38e0934..74bad8d 100644
+--- a/src/app/terminal/page.tsx
++++ b/src/app/terminal/page.tsx
+@@ -3,7 +3,7 @@ import { TerminalApp } from "@/components/terminal-app";
+ import { fileExistsInPublic } from "@/lib/files";
+ 
+ export const metadata: Metadata = {
+-  title: "Terminal — Bruce Nduko",
++  title: "Terminal",
+   description: "Bruce Nduko's site, as a terminal.",
+ };
+ 
+diff --git a/src/app/uses/page.tsx b/src/app/uses/page.tsx
+index d0419a6..9cf0ae1 100644
+--- a/src/app/uses/page.tsx
++++ b/src/app/uses/page.tsx
+@@ -3,7 +3,7 @@ import { uses } from "@/content/uses";
+ import { Reveal } from "@/components/reveal";
+ 
+ export const metadata: Metadata = {
+-  title: "Uses — Bruce Nduko",
++  title: "Uses",
+   description: "Hardware, editor, AI tools, stack, and infra Bruce Nduko uses.",
+ };
+ 
+diff --git a/src/components/hero.tsx b/src/components/hero.tsx
+index 1d50804..1a97b6b 100644
+--- a/src/components/hero.tsx
++++ b/src/components/hero.tsx
+@@ -53,7 +53,7 @@ export function Hero({ lang }: { lang: Lang }) {
+           {hasPhoto ? (
+             <Image
+               src={profile.photo!}
+-              alt={profile.name}
++              alt={`${profile.name}, ${profile.headline}`}
+               fill
+               priority
+               sizes="(min-width: 1024px) 40vw, 100vw"
+diff --git a/src/content/links.ts b/src/content/links.ts
+index 4e81d28..46a4b8f 100644
+--- a/src/content/links.ts
++++ b/src/content/links.ts
+@@ -3,6 +3,10 @@
+ // nothing renders a fabricated value in the meantime.
+ 
+ export const links = {
++  // Canonical production origin. Used for canonical URLs, sitemap, and
++  // structured data so search engines always see one consistent address.
++  siteUrl: "https://brucenduko.dev",
++
+   // GitHub username used to pull public activity (contributions, top
+   // languages, recent pushes). Leave empty to hide the GitHub section
+   // entirely rather than show fake or wrong data.
+diff --git a/src/app/robots.ts b/src/app/robots.ts
+new file mode 100644
+index 0000000..629b894
+--- /dev/null
++++ b/src/app/robots.ts
+@@ -0,0 +1,10 @@
++import type { MetadataRoute } from "next";
++import { links } from "@/content/links";
++
++export default function robots(): MetadataRoute.Robots {
++  return {
++    rules: { userAgent: "*", allow: "/", disallow: "/api/" },
++    sitemap: `${links.siteUrl}/sitemap.xml`,
++    host: links.siteUrl,
++  };
++}
+diff --git a/src/app/sitemap.ts b/src/app/sitemap.ts
+new file mode 100644
+index 0000000..b39952b
+--- /dev/null
++++ b/src/app/sitemap.ts
+@@ -0,0 +1,23 @@
++import type { MetadataRoute } from "next";
++import { links } from "@/content/links";
++import { projects } from "@/content/projects";
++
++const pages = ["", "/about", "/projects", "/certifications", "/now", "/principles", "/uses"];
++
++export default function sitemap(): MetadataRoute.Sitemap {
++  const now = new Date();
++  return [
++    ...pages.map((path) => ({
++      url: `${links.siteUrl}${path}`,
++      lastModified: now,
++      changeFrequency: "monthly" as const,
++      priority: path === "" ? 1 : 0.7,
++    })),
++    ...projects.map((p) => ({
++      url: `${links.siteUrl}/projects/${p.slug}`,
++      lastModified: now,
++      changeFrequency: "monthly" as const,
++      priority: 0.6,
++    })),
++  ];
++}
+diff --git a/src/components/site-footer.tsx b/src/components/site-footer.tsx
+new file mode 100644
+index 0000000..364f723
+--- /dev/null
++++ b/src/components/site-footer.tsx
+@@ -0,0 +1,46 @@
++import { profile } from "@/content/profile";
++import { links } from "@/content/links";
++
++const PLAY_STORE =
++  "https://play.google.com/store/apps/details?id=com.leveragex.leveragex";
++
++export function SiteFooter() {
++  const profiles = [
++    { label: "GitHub", href: links.social.github },
++    { label: "LinkedIn", href: links.social.linkedin },
++    { label: "X", href: links.social.x },
++    { label: "Tija Labs", href: "https://tijalabs.com" },
++    { label: "LeverageX", href: PLAY_STORE },
++  ].filter((l) => l.href);
++
++  return (
++    <footer className="relative z-10 border-t border-border">
++      <div className="mx-auto flex max-w-4xl flex-col gap-4 px-6 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
++        <p>
++          &copy; {new Date().getFullYear()} {profile.name} — {profile.headline}
++        </p>
++        <nav aria-label="Find Bruce Nduko online">
++          <ul className="flex flex-wrap gap-x-5 gap-y-2">
++            {profiles.map((l) => (
++              <li key={l.label}>
++                <a
++                  href={l.href}
++                  target="_blank"
++                  rel="me noopener noreferrer"
++                  className="hover:text-accent"
++                >
++                  {l.label}
++                </a>
++              </li>
++            ))}
++            <li>
++              <a href={`mailto:${profile.contact.email}`} className="hover:text-accent">
++                Email
++              </a>
++            </li>
++          </ul>
++        </nav>
++      </div>
++    </footer>
++  );
++}
