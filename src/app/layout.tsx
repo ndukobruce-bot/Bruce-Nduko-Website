@@ -6,6 +6,7 @@ import { CodeBackground } from "@/components/code-background";
 import { profile } from "@/content/profile";
 import { links } from "@/content/links";
 import { SiteFooter } from "@/components/site-footer";
+import { Analytics } from "@vercel/analytics/next";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -99,6 +100,7 @@ export default async function RootLayout({
         />
         <main className="relative z-10 flex-1">{children}</main>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );
